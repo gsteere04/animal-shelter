@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from schemas import Animal, Shelter
+from schemas import Animals, Shelter
 
 # Make the pydantic model `Shelter` that will represent this data, then manually
-# change this list to be a list[Shelter]. You don't need to write code to convert
+# change this list to be a `list[Shelter]`. You don't need to write code to convert
 # this list, just manually change it by hand.
 shelters_json: list = [
     {
@@ -31,18 +31,22 @@ shelters_json: list = [
             "dogs": 7,
         },
     },
+    {
+        "name": "Bailey's Rescued Animals",
+        "address": "25 Main St, St. George, UT 84770",
+        "animals": {
+            "cats": 0,
+            "dogs": 0,
+        },
+    },
 ]
 
 shelters: list[Shelter] = []
 for shelter in shelters_json:
-    animals = [
-        Animal(animal_type=animal, count=count)
-        for animal, count in shelter["animals"].items()
-    ]
+    animals = Animals(cats=shelter["animals"]["cats"], dogs=shelter["animals"]["dogs"])
     shelters.append(
         Shelter(name=shelter["name"], address=shelter["address"], animals=animals)
     )
-
 
 app = FastAPI()
 
