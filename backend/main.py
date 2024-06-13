@@ -39,6 +39,14 @@ shelters_json: list = [
             "dogs": 0,
         },
     },
+    {
+        "name": "Izzy's Home for Cute Cats",
+        "address": "28 Main St, St. George, UT 84770",
+        "animals": {
+            "cats": 10,
+            "dogs": 0,
+        },
+    },
 ]
 
 shelters: list[Shelter] = []
