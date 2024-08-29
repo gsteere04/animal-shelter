@@ -8,5 +8,6 @@ class Animals(BaseModel):
 
 class Shelter(BaseModel):
     name: str
+    id: int
     address: str
     animals: Animals
